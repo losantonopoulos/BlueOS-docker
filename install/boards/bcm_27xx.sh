@@ -63,7 +63,7 @@ for STRING in "bcm2835-v4l2" "i2c-bcm2835" "i2c-dev"; do
 done
 
 # Remove any console serial configuration
-echo "- Configure serial."
+echo "- Configure serial.*"
 sudo sed -e 's/console=serial[0-9],[0-9]*\ //' -i /boot/firmware/nobtcmd.txt
 
 # Update raspberry pi firmware
