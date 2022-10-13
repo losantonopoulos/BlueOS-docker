@@ -135,7 +135,7 @@ then
     alias docker=dind
 fi
 
-sudo usermod -aG docker ubuntu
+sudo usermod -aG docker pi
 
 # Stop and remove all docker if NO_CLEAN is not defined
 test $NO_CLEAN || (
