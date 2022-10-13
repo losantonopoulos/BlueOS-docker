@@ -64,7 +64,7 @@ done
 
 # Remove any console serial configuration
 echo "- Configure serial."
-sudo sed -e 's/console=serial[0-9],[0-9]*\ //' -i /boot/firmware/cmdline.txt
+sudo sed -e 's/console=serial[0-9],[0-9]*\ //' -i /boot/firmware/nobtcmd.txt
 
 # Update raspberry pi firmware
 # this is required to avoid 'i2c transfer timed out' kernel errors
