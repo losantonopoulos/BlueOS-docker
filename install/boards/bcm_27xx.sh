@@ -13,7 +13,7 @@ echo "- compile spi0 device tree overlay."
 DTS_PATH="$ROOT/install/overlays"
 DTS_NAME="spi0-led"
 curl -fsSL -o /tmp/$DTS_NAME $DTS_PATH/$DTS_NAME.dts
-dtc -@ -Hepapr -I dts -O dtb -o /boot/overlays/$DTS_NAME.dtbo /tmp/$DTS_NAME
+dtc -@ -Hepapr -I dts -O dtb -o /boot/firmware/overlays/$DTS_NAME.dtbo /tmp/$DTS_NAME
 
 # Remove any configuration related to i2c and spi/spi1 and do the necessary changes for navigator
 echo "- Enable I2C, SPI and UART."
@@ -26,7 +26,7 @@ for STRING in \
     "dtoverlay=spi" \
     "gpio=" \
     ; do \
-    sudo sed -i "/$STRING/d" /boot/config.txt
+    sudo sed -i "/$STRING/d" /boot/firmware/config.txt
 done
 for STRING in \
     "enable_uart=1" \
@@ -44,7 +44,7 @@ for STRING in \
     "gpio=11,24,25=op,pu,dh" \
     "gpio=37=op,pd,dl" \
     ; do \
-    echo "$STRING" | sudo tee -a /boot/config.txt
+    echo "$STRING" | sudo tee -a /boot/firmware/config.txt
 done
 
 # Check for valid modules file to load kernel modules
@@ -64,7 +64,7 @@ done
 
 # Remove any console serial configuration
 echo "- Configure serial."
-sudo sed -e 's/console=serial[0-9],[0-9]*\ //' -i /boot/cmdline.txt
+sudo sed -e 's/console=serial[0-9],[0-9]*\ //' -i /boot/firmware/cmdline.txt
 
 # Update raspberry pi firmware
 # this is required to avoid 'i2c transfer timed out' kernel errors
